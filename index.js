@@ -5,6 +5,8 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 app.set('view engine', 'ejs')
+//bodyParsing
+app.use(express.urlencoded({extended: false}))
 //routes
 app.use('/', require('./routes/login'))
 
