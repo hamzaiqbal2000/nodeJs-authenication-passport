@@ -2,6 +2,7 @@ const express = require('express')
 const { default: mongoose } = require('mongoose')
 const app = express()
 const dotenv = require('dotenv')
+const session = require('express-session');
 dotenv.config()
 const passport = require('passport')
 const { loginCheck } = require('./auth/passport')
@@ -24,6 +25,12 @@ app.use(passport.session())
 
 //routes
 app.use('/', require('./routes/login'))
+
+app.use(session({
+  secret:'oneboy',
+  saveUninitialized: true,
+  resave: true
+}));
 
 
 const PORT = process.env.PORT || 3000
